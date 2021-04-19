@@ -16,7 +16,7 @@ function Main() {
       <Link to="/decks/new" className="btn btn-secondary" role="button">
         Create Deck
       </Link>
-      <Deck decksArray={decksArray} />
+      <Deck decksArray={decksArray} setDecksArray={setDecksArray} />
     </div>
   );
 }

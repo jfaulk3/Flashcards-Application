@@ -5,7 +5,6 @@ function Cards({ cards }) {
   const [flipped, setFlipped] = useState(false);
 
   if (!cards) return null;
-  console.log(cards[cardIndex]);
   const { front, back } = cards[cardIndex];
   return (
     <div className="card">

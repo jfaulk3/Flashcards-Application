@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { deleteDeck } from "../../utils/api";
 
-function Deck({ decksArray }) {
+function Deck({ decksArray, setDecksArray }) {
+  if (!decksArray) return null;
+  const handleDelete = (id) => {
+    if (
+      window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
+    ) {
+      setDecksArray(deleteDeck(id));
+    }
+  };
   return (
     <div>
       {decksArray.map(({ id, name, description, cards }, index) => {
@@ -30,7 +39,12 @@ function Deck({ decksArray }) {
                 >
                   Study
                 </Link>
-                <Link to="" className="btn btn-danger" role="button">
+                <Link
+                  to=""
+                  className="btn btn-danger"
+                  role="button"
+                  onClick={() => handleDelete(id)}
+                >
                   Delete
                 </Link>
               </div>
