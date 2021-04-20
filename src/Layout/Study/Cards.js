@@ -1,31 +1,42 @@
-import React, { useState } from "react";
-
-function Cards({ cards }) {
+import React, { useEffect, useState } from "react";
+import { Link, useParams, Redirect } from "react-router-dom";
+import Card from "./Card";
+function Cards({ cards = [] }) {
   const [cardIndex, setCardIndex] = useState(0);
-  const [flipped, setFlipped] = useState(false);
+  const { deckId } = useParams();
 
-  if (!cards) return null;
-  const { front, back } = cards[cardIndex];
+  if (cards.length < 3) {
+    return (
+      <React.Fragment>
+        <h2>Not enough cards</h2>
+        <p>
+          You need at least 3 cards to study. There are {cards.length}
+          cards in this deck.
+        </p>
+        <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary">
+          Add Cards
+        </Link>
+      </React.Fragment>
+    );
+  }
+  if (cards.length === cardIndex) {
+    if (
+      window.confirm(
+        "Restart cards?\n\nClick 'cancel' to return to the home page."
+      )
+    ) {
+      setCardIndex(0);
+    } else {
+      <Redirect to="/" />;
+    }
+  }
   return (
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">
-          Card {cardIndex + 1} of {cards.length}
-        </h5>
-        <p className="card-text">{flipped ? back : front}</p>
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            setFlipped(!flipped);
-          }}
-        >
-          Flip
-        </button>
-        {flipped ? (
-          <button className="btn btn-success">Next Card</button>
-        ) : null}
-      </div>
-    </div>
+    <Card
+      cardIndex={cardIndex}
+      setCardIndex={setCardIndex}
+      card={cards[cardIndex]}
+      length={cards.length}
+    />
   );
 }
 

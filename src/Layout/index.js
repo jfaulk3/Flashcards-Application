@@ -2,8 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
-import Main from "./Main";
+import ListDecks from "./ListDecks";
 import Study from "./Study";
+import View from "./Deck/View";
+import NewDeck from "./NewDeck";
 
 function Layout() {
   return (
@@ -12,9 +14,15 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route exact={true} path="/">
-            <Main />
+            <ListDecks />
           </Route>
-          <Route exact={true} path="/decks/:deckId/study">
+          <Route path="/decks/new">
+            <NewDeck />
+          </Route>
+          <Route exact={true} path="/decks/:deckId">
+            <View />
+          </Route>
+          <Route path="/decks/:deckId/study">
             <Study />
           </Route>
           <Route>
