@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { deleteDeck, listDecks } from "../../utils/api";
 
-function ShowDeck({ deck, setDeckList }) {
+function ViewDeck({ deck, setDeckList }) {
   const handleDelete = (id) => {
     if (
       window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
@@ -56,4 +56,4 @@ function ShowDeck({ deck, setDeckList }) {
   return null;
 }
 
-export default ShowDeck;
+export default ViewDeck;

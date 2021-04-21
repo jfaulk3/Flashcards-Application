@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { listDecks } from "../../utils/api";
-import ShowDeck from "./ShowDeck";
+import ViewDeck from "./ViewDeck";
 
 function ListDeck() {
   const [deckList, setDeckList] = useState([]);
@@ -35,7 +35,7 @@ function ListDeck() {
       {deckList.map((deck, index) => {
         return (
           <div key={index}>
-            <ShowDeck deck={deck} setDeckList={setDeckList} />
+            <ViewDeck deck={deck} setDeckList={setDeckList} />
           </div>
         );
       })}
