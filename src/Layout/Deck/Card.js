@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { deleteCard } from "../../utils/api";
 
 function Card({ card }) {
-  const { url } = useRouteMatch();
+  const { deckId } = useParams();
   const handleDelete = (id) => {
     if (
       window.confirm("Delete this card?\n\nYou will not be able to recover it.")
@@ -19,7 +19,7 @@ function Card({ card }) {
           <p className="card-text col-6">{card.back}</p>
         </div>
         <Link
-          to={`${url}/cards/${card.id}/edit`}
+          to={`/decks/${deckId}/cards/${card.id}/edit`}
           className="btn btn-primary m-2"
           role="button"
         >
