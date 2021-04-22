@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { readDeck } from "../../utils/api/index";
 import Nav from "./Nav";
 import Cards from "./Cards";

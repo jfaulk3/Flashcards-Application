@@ -7,7 +7,6 @@ function AddCard() {
   const { deckId, cardId } = useParams();
   const [deck, setDeck] = useState([]);
   const history = useHistory();
-  const [card, setCard] = useState({});
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
   const handleFrontChange = (event) => setFront(event.target.value);
@@ -48,7 +47,6 @@ function AddCard() {
       const getCard = async () => {
         try {
           const data = await readCard(cardId, abortController.signal);
-          setCard(data);
           setFront(data.front);
           setBack(data.back);
         } catch (error) {
